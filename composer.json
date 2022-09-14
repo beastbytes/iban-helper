@@ -21,7 +21,7 @@
     "prefer-stable": true,
     "require": {
         "php": "^8.0",
-        "yiisoft/validator": "3.0.x-dev"
+        "beastbytes/iban-formats": "dev-master"
     },
     "require-dev": {
         "phpunit/phpunit": "^9.5",
@@ -30,7 +30,7 @@
     },
     "autoload": {
         "psr-4": {
-            "BeastBytes\\Iban\\": "src"
+            "BeastBytes\\Iban\\Helper\\": "src"
         }
     },
     "autoload-dev": {
