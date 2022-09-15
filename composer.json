@@ -1,7 +1,7 @@
 {
-    "name": "beastbytes/iban",
+    "name": "beastbytes/iban-helper",
     "type": "library",
-    "description": "International Bank Account Number helper methods and validator",
+    "description": "International Bank Account Number helper methods",
     "keywords": [
         "helper",
         "validator",
