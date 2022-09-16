@@ -1,4 +1,4 @@
-The phone-number-validator library is free software. It is released under the terms of the
+The iban-helper library is free software. It is released under the terms of the
 following BSD License.
 
 Copyright © 2021 BeastBytes - All rights reserved.

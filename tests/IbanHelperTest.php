@@ -8,7 +8,7 @@ declare(strict_types=1);
 
 namespace Tests;
 
-use BeastBytes\Iban\Formats\IbanFormat;
+use BeastBytes\Iban\PHP\IbanStorage;
 use BeastBytes\Iban\Helper\Iban;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
@@ -21,7 +21,7 @@ class IbanHelperTest extends TestCase
     public function test_generate_iban($country, $checkDigits, $data): void
     {
         $iban = $country . $checkDigits . implode($data);
-        $this->assertSame($iban, Iban::generateIban($country, $data, new IbanFormat()));
+        $this->assertSame($iban, Iban::generateIban($country, $data, new IbanStorage()));
     }
 
     /**
@@ -31,7 +31,7 @@ class IbanHelperTest extends TestCase
     {
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage($message);
-        Iban::generateIban($country, $data, new IbanFormat());
+        Iban::generateIban($country, $data, new IbanStorage());
     }
 
     /**
@@ -39,11 +39,11 @@ class IbanHelperTest extends TestCase
      */
     public function test_get_fields($country, $checkDigits, $data)
     {
-        $ibanFormat = new IbanFormat();
+        $ibans = new IbanStorage();
         $iban = $country . $checkDigits . implode($data);
         array_unshift($data, $checkDigits);
-        $fields = Iban::getFields($iban, $ibanFormat);
-        $this->assertSame(array_combine($ibanFormat->getFields($country), $data), $fields);
+        $fields = Iban::getFields($iban, $ibans);
+        $this->assertSame(array_combine($ibans->getFields($country), $data), $fields);
     }
 
     /**
@@ -51,7 +51,7 @@ class IbanHelperTest extends TestCase
      */
     public function test_uses_iban(string $country)
     {
-        $this->assertTrue(Iban::usesIban($country, new IbanFormat()));
+        $this->assertTrue(Iban::usesIban($country, new IbanStorage()));
     }
 
     /**
@@ -59,7 +59,7 @@ class IbanHelperTest extends TestCase
      */
     public function test_does_not_use_iban(string $country)
     {
-        $this->assertFalse(Iban::usesIban($country, new IbanFormat()));
+        $this->assertFalse(Iban::usesIban($country, new IbanStorage()));
     }
 
     public function badIbanProvider()
