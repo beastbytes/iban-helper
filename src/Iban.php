@@ -6,7 +6,7 @@
 
 declare(strict_types=1);
 
-namespace BeastBytes\Iban\Helper;
+namespace BeastBytes\IBAN\Helper;
 
 use BeastBytes\Iban\IbanStorageInterface;
 use \InvalidArgumentException;

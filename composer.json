@@ -30,7 +30,7 @@
     },
     "autoload": {
         "psr-4": {
-            "BeastBytes\\Iban\\Helper\\": "src"
+            "BeastBytes\\IBAN\\Helper\\": "src"
         }
     },
     "autoload-dev": {
