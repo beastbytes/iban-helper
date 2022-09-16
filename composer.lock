@@ -4,23 +4,71 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5ca80926d6204e5a56d83347f204a08d",
+    "content-hash": "437c0db71e01c7aae30d72c091b7129c",
     "packages": [
         {
-            "name": "beastbytes/iban-formats",
+            "name": "beastbytes/iban",
             "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "git@192.168.0.80:BeastBytes/iban-formats.git",
-                "reference": "ee5876bd1fc100b87cb0bb82aa2d5c272d196c27"
+                "url": "git@192.168.0.80:BeastBytes/iban.git",
+                "reference": "ceb1690bdab566ec5a7b4713a1a0cb234ff5ffcd"
             },
             "dist": {
                 "type": "tar",
-                "url": "https://acappella.saluki/archives/beastbytes/iban-formats/dev-master/ee5876bd1fc100b87cb0bb82aa2d5c272d196c27.tar.gz",
-                "reference": "ee5876bd1fc100b87cb0bb82aa2d5c272d196c27",
-                "shasum": "196ab6e3a5ee7cf88bef3b6881cd2cd9a429d24f"
+                "url": "https://acappella.saluki/archives/beastbytes/iban/dev-master/ceb1690bdab566ec5a7b4713a1a0cb234ff5ffcd.tar.gz",
+                "reference": "ceb1690bdab566ec5a7b4713a1a0cb234ff5ffcd",
+                "shasum": "9e5c686249b402251b512979d4145fa447bbd9f8"
             },
             "require": {
+                "php": "^8.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "BeastBytes\\IBAN\\": "src"
+                }
+            },
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Chris Yates",
+                    "email": "chris.l.yates@gmail.com"
+                }
+            ],
+            "description": "Interface for retrieving International Bank Account Number (IBAN) data",
+            "keywords": [
+                "IBAN",
+                "International Bank Account Number"
+            ],
+            "support": {
+                "issues": "https://github.com/beastbytes/iban-formats/issues",
+                "source": "https://github.com/beastbytes/iban-formats"
+            },
+            "transport-options": {
+                "ssl": {
+                    "allow_self_signed": true
+                }
+            }
+        },
+        {
+            "name": "beastbytes/iban-php",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "git@192.168.0.80:BeastBytes/iban-php.git",
+                "reference": "5329bf18d8ddac617d055a1726d08ba1a9d65acc"
+            },
+            "dist": {
+                "type": "tar",
+                "url": "https://acappella.saluki/archives/beastbytes/iban-php/dev-master/5329bf18d8ddac617d055a1726d08ba1a9d65acc.tar.gz",
+                "reference": "5329bf18d8ddac617d055a1726d08ba1a9d65acc",
+                "shasum": "a23b643232c432e494674f346adce52dc9e42a72"
+            },
+            "require": {
+                "beastbytes/iban": "dev-master",
                 "php": "^8.0"
             },
             "require-dev": {
@@ -31,7 +79,7 @@
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "BeastBytes\\Iban\\Formats\\": "src"
+                    "BeastBytes\\IBAN\\PHP\\": "src"
                 }
             },
             "autoload-dev": {
@@ -48,7 +96,7 @@
                     "email": "chris.l.yates@gmail.com"
                 }
             ],
-            "description": "International Bank Account Number (IBAN) format data indexed by ISO 3166 country alpha-2 codes",
+            "description": "PHP storage for International Bank Account Number (IBAN) indexed by ISO 3166 country alpha-2 codes",
             "keywords": [
                 "IBAN",
                 "International Bank Account Number"
@@ -1745,12 +1793,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Roave/SecurityAdvisories.git",
-                "reference": "2481df8dc4eed2f379e486ad9c9435371a378f96"
+                "reference": "43f029aa18e7dec4b71c4b209dfaa460744b329d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/2481df8dc4eed2f379e486ad9c9435371a378f96",
-                "reference": "2481df8dc4eed2f379e486ad9c9435371a378f96",
+                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/43f029aa18e7dec4b71c4b209dfaa460744b329d",
+                "reference": "43f029aa18e7dec4b71c4b209dfaa460744b329d",
                 "shasum": ""
             },
             "conflict": {
@@ -2046,6 +2094,7 @@
                 "pusher/pusher-php-server": "<2.2.1",
                 "pwweb/laravel-core": "<=0.3.6-beta",
                 "rainlab/debugbar-plugin": "<3.1",
+                "rankmath/seo-by-rank-math": "<=1.0.95",
                 "remdex/livehelperchat": "<3.99",
                 "rmccue/requests": ">=1.6,<1.8",
                 "robrichards/xmlseclibs": "<3.0.4",
@@ -2257,7 +2306,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-09-15T04:37:09+00:00"
+            "time": "2022-09-16T14:12:29+00:00"
         },
         {
             "name": "sebastian/cli-parser",
@@ -4168,7 +4217,7 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "beastbytes/iban-formats": 20,
+        "beastbytes/iban-php": 20,
         "roave/security-advisories": 20
     },
     "prefer-stable": true,

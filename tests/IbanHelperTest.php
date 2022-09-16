@@ -8,8 +8,8 @@ declare(strict_types=1);
 
 namespace Tests;
 
-use BeastBytes\Iban\PHP\IbanStorage;
-use BeastBytes\Iban\Helper\Iban;
+use BeastBytes\IBAN\PHP\IbanStorage;
+use BeastBytes\IBAN\Helper\Iban;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 
@@ -67,7 +67,7 @@ class IbanHelperTest extends TestCase
 
         return [ // country, data, message
             [
-                'XX', 'BARC20201630093459', 'Country XX does not use IBAN'
+                'XX', 'BARC20201630093459', 'Country "XX" does not use IBAN'
             ],
             [
                 'GB', 'BARC2020163003459', 'Data not the correct format for GB'

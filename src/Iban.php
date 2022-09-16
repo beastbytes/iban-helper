@@ -8,7 +8,7 @@ declare(strict_types=1);
 
 namespace BeastBytes\IBAN\Helper;
 
-use BeastBytes\Iban\IbanStorageInterface;
+use BeastBytes\IBAN\IbanStorageInterface;
 use \InvalidArgumentException;
 
 /**
@@ -42,7 +42,7 @@ class Iban
 
         if (!self::usesIban($country, $ibans)) {
             throw new InvalidArgumentException(strtr(
-                'Country {country} does not use IBAN',
+                'Country "{country}" does not use IBAN',
                 ['{country}' => $country]
             ));
         }
@@ -77,7 +77,7 @@ class Iban
 
         if (!self::usesIban($country, $ibans)) {
             throw new InvalidArgumentException(strtr(
-                'Country {country} does not use IBAN',
+                'Country "{country}" does not use IBAN',
                 ['{country}' => $country]
             ));
         }
