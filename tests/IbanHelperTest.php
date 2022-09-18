@@ -8,7 +8,7 @@ declare(strict_types=1);
 
 namespace Tests;
 
-use BeastBytes\IBAN\PHP\IbanStorage;
+use BeastBytes\IBAN\PHP\IbanData;
 use BeastBytes\IBAN\Helper\Iban;
 use InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
@@ -21,7 +21,7 @@ class IbanHelperTest extends TestCase
     public function test_generate_iban($country, $checkDigits, $data): void
     {
         $iban = $country . $checkDigits . implode($data);
-        $this->assertSame($iban, Iban::generateIban($country, $data, new IbanStorage()));
+        $this->assertSame($iban, Iban::generateIban($country, $data, new IbanData()));
     }
 
     /**
@@ -31,7 +31,7 @@ class IbanHelperTest extends TestCase
     {
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage($message);
-        Iban::generateIban($country, $data, new IbanStorage());
+        Iban::generateIban($country, $data, new IbanData());
     }
 
     /**
@@ -39,7 +39,7 @@ class IbanHelperTest extends TestCase
      */
     public function test_get_fields($country, $checkDigits, $data)
     {
-        $ibans = new IbanStorage();
+        $ibans = new IbanData();
         $iban = $country . $checkDigits . implode($data);
         array_unshift($data, $checkDigits);
         $fields = Iban::getFields($iban, $ibans);
@@ -51,7 +51,7 @@ class IbanHelperTest extends TestCase
      */
     public function test_uses_iban(string $country)
     {
-        $this->assertTrue(Iban::usesIban($country, new IbanStorage()));
+        $this->assertTrue(Iban::usesIban($country, new IbanData()));
     }
 
     /**
@@ -59,7 +59,7 @@ class IbanHelperTest extends TestCase
      */
     public function test_does_not_use_iban(string $country)
     {
-        $this->assertFalse(Iban::usesIban($country, new IbanStorage()));
+        $this->assertFalse(Iban::usesIban($country, new IbanData()));
     }
 
     public function badIbanProvider()

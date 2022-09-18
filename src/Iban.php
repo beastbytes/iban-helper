@@ -8,7 +8,7 @@ declare(strict_types=1);
 
 namespace BeastBytes\IBAN\Helper;
 
-use BeastBytes\IBAN\IbanStorageInterface;
+use BeastBytes\IBAN\IbanDataInterface;
 use \InvalidArgumentException;
 
 /**
@@ -35,7 +35,7 @@ class Iban
     public static function generateIban(
         string $country,
         array|string $data,
-        IbanStorageInterface $ibans
+        IbanDataInterface $ibans
     ): string
     {
         $country = strtoupper($country);
@@ -70,7 +70,7 @@ class Iban
      * @param string $iban The IBAN to get the fields of
      * @return array The IBAN fields
      */
-    public static function getFields(string $iban, IbanStorageInterface $ibans): array
+    public static function getFields(string $iban, IbanDataInterface $ibans): array
     {
         $iban = str_replace(' ', '', $iban);
         $country = substr($iban, 0, 2);
@@ -119,7 +119,7 @@ class Iban
         return $mod97;
     }
 
-    public static function usesIban(string $country, IbanStorageInterface $ibans): bool
+    public static function usesIban(string $country, IbanDataInterface $ibans): bool
     {
         return $ibans->hasCountry($country);
     }

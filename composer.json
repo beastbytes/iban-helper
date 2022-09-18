@@ -4,7 +4,6 @@
     "description": "International Bank Account Number helper methods",
     "keywords": [
         "helper",
-        "validator",
         "International Bank Account Number",
         "IBAN"
     ],
@@ -20,10 +19,10 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {
-        "php": "^8.0",
-        "beastbytes/iban-php": "dev-master"
+        "php": "^8.0"
     },
     "require-dev": {
+        "beastbytes/iban-data-php": "dev-master",
         "phpunit/phpunit": "^9.5",
         "roave/security-advisories": "dev-latest",
         "vimeo/psalm": "^4.3"

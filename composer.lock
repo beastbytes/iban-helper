@@ -4,114 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "437c0db71e01c7aae30d72c091b7129c",
-    "packages": [
-        {
-            "name": "beastbytes/iban",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "git@192.168.0.80:BeastBytes/iban.git",
-                "reference": "ceb1690bdab566ec5a7b4713a1a0cb234ff5ffcd"
-            },
-            "dist": {
-                "type": "tar",
-                "url": "https://acappella.saluki/archives/beastbytes/iban/dev-master/ceb1690bdab566ec5a7b4713a1a0cb234ff5ffcd.tar.gz",
-                "reference": "ceb1690bdab566ec5a7b4713a1a0cb234ff5ffcd",
-                "shasum": "9e5c686249b402251b512979d4145fa447bbd9f8"
-            },
-            "require": {
-                "php": "^8.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "BeastBytes\\IBAN\\": "src"
-                }
-            },
-            "license": [
-                "BSD-3-Clause"
-            ],
-            "authors": [
-                {
-                    "name": "Chris Yates",
-                    "email": "chris.l.yates@gmail.com"
-                }
-            ],
-            "description": "Interface for retrieving International Bank Account Number (IBAN) data",
-            "keywords": [
-                "IBAN",
-                "International Bank Account Number"
-            ],
-            "support": {
-                "issues": "https://github.com/beastbytes/iban-formats/issues",
-                "source": "https://github.com/beastbytes/iban-formats"
-            },
-            "transport-options": {
-                "ssl": {
-                    "allow_self_signed": true
-                }
-            }
-        },
-        {
-            "name": "beastbytes/iban-php",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "git@192.168.0.80:BeastBytes/iban-php.git",
-                "reference": "5329bf18d8ddac617d055a1726d08ba1a9d65acc"
-            },
-            "dist": {
-                "type": "tar",
-                "url": "https://acappella.saluki/archives/beastbytes/iban-php/dev-master/5329bf18d8ddac617d055a1726d08ba1a9d65acc.tar.gz",
-                "reference": "5329bf18d8ddac617d055a1726d08ba1a9d65acc",
-                "shasum": "a23b643232c432e494674f346adce52dc9e42a72"
-            },
-            "require": {
-                "beastbytes/iban": "dev-master",
-                "php": "^8.0"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "^9.5",
-                "roave/security-advisories": "dev-latest",
-                "vimeo/psalm": "^4.3"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "BeastBytes\\IBAN\\PHP\\": "src"
-                }
-            },
-            "autoload-dev": {
-                "psr-4": {
-                    "Tests\\": "tests"
-                }
-            },
-            "license": [
-                "BSD-3-Clause"
-            ],
-            "authors": [
-                {
-                    "name": "Chris Yates",
-                    "email": "chris.l.yates@gmail.com"
-                }
-            ],
-            "description": "PHP storage for International Bank Account Number (IBAN) indexed by ISO 3166 country alpha-2 codes",
-            "keywords": [
-                "IBAN",
-                "International Bank Account Number"
-            ],
-            "support": {
-                "issues": "https://github.com/beastbytes/iban-formats/issues",
-                "source": "https://github.com/beastbytes/iban-formats"
-            },
-            "transport-options": {
-                "ssl": {
-                    "allow_self_signed": true
-                }
-            }
-        }
-    ],
+    "content-hash": "9cc2d20d1e8cff7d02ef01784de6462c",
+    "packages": [],
     "packages-dev": [
         {
             "name": "amphp/amp",
@@ -278,6 +172,111 @@
                 }
             ],
             "time": "2021-03-30T17:13:30+00:00"
+        },
+        {
+            "name": "beastbytes/iban-data",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "git@192.168.0.80:BeastBytes/iban-data.git",
+                "reference": "7ba4bac94033d10a0ef92c602a232a968eb67ef3"
+            },
+            "dist": {
+                "type": "tar",
+                "url": "https://acappella.saluki/archives/beastbytes/iban-data/dev-master/7ba4bac94033d10a0ef92c602a232a968eb67ef3.tar.gz",
+                "reference": "7ba4bac94033d10a0ef92c602a232a968eb67ef3",
+                "shasum": "2f183dcbb86e5fe374cede2096a392364ab83f43"
+            },
+            "require": {
+                "php": "^8.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "BeastBytes\\IBAN\\": "src"
+                }
+            },
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Chris Yates",
+                    "email": "chris.l.yates@gmail.com"
+                }
+            ],
+            "description": "Interface for retrieving International Bank Account Number (IBAN) data",
+            "keywords": [
+                "IBAN",
+                "International Bank Account Number"
+            ],
+            "support": {
+                "issues": "https://github.com/beastbytes/iban-data/issues",
+                "source": "https://github.com/beastbytes/iban-data"
+            },
+            "transport-options": {
+                "ssl": {
+                    "allow_self_signed": true
+                }
+            }
+        },
+        {
+            "name": "beastbytes/iban-data-php",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "git@192.168.0.80:BeastBytes/iban-data-php.git",
+                "reference": "f70670f7d283004c449a2978737810d419f770ab"
+            },
+            "dist": {
+                "type": "tar",
+                "url": "https://acappella.saluki/archives/beastbytes/iban-data-php/dev-master/f70670f7d283004c449a2978737810d419f770ab.tar.gz",
+                "reference": "f70670f7d283004c449a2978737810d419f770ab",
+                "shasum": "2af9261c80fc1362be16e0c01596fd1c8480791d"
+            },
+            "require": {
+                "beastbytes/iban-data": "dev-master",
+                "php": "^8.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^9.5",
+                "roave/security-advisories": "dev-latest",
+                "vimeo/psalm": "^4.3"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "BeastBytes\\IBAN\\PHP\\": "src"
+                }
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "Tests\\": "tests"
+                }
+            },
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Chris Yates",
+                    "email": "chris.l.yates@gmail.com"
+                }
+            ],
+            "description": "Implementation of iban-data to retrieve IBAN (International Bank Account Number)] from PHP storage.",
+            "keywords": [
+                "IBAN",
+                "International Bank Account Number"
+            ],
+            "support": {
+                "issues": "https://github.com/beastbytes/iban-data-php/issues",
+                "source": "https://github.com/beastbytes/iban-data-php"
+            },
+            "transport-options": {
+                "ssl": {
+                    "allow_self_signed": true
+                }
+            }
         },
         {
             "name": "composer/package-versions-deprecated",
@@ -1793,12 +1792,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Roave/SecurityAdvisories.git",
-                "reference": "43f029aa18e7dec4b71c4b209dfaa460744b329d"
+                "reference": "264a5085afd6e127daba3f47751fa971d3c29c3d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/43f029aa18e7dec4b71c4b209dfaa460744b329d",
-                "reference": "43f029aa18e7dec4b71c4b209dfaa460744b329d",
+                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/264a5085afd6e127daba3f47751fa971d3c29c3d",
+                "reference": "264a5085afd6e127daba3f47751fa971d3c29c3d",
                 "shasum": ""
             },
             "conflict": {
@@ -1891,6 +1890,8 @@
                 "enshrined/svg-sanitize": "<0.15",
                 "erusev/parsedown": "<1.7.2",
                 "ether/logs": "<3.0.4",
+                "exceedone/exment": "<4.4.3|>=5,<5.0.3",
+                "exceedone/laravel-admin": "= 3.0.0|<2.2.3",
                 "ezsystems/demobundle": ">=5.4,<5.4.6.1",
                 "ezsystems/ez-support-tools": ">=2.2,<2.2.3",
                 "ezsystems/ezdemo-ls-extension": ">=5.4,<5.4.2.1",
@@ -1929,7 +1930,7 @@
                 "friendsofsymfony/user-bundle": ">=1.2,<1.3.5",
                 "friendsoftypo3/mediace": ">=7.6.2,<7.6.5",
                 "froala/wysiwyg-editor": "<3.2.7",
-                "froxlor/froxlor": "<=0.10.22",
+                "froxlor/froxlor": "<0.10.38",
                 "fuel/core": "<1.8.1",
                 "gaoming13/wechat-php-sdk": "<=1.10.2",
                 "genix/cms": "<=1.1.11",
@@ -2073,7 +2074,7 @@
                 "phpwhois/phpwhois": "<=4.2.5",
                 "phpxmlrpc/extras": "<0.6.1",
                 "pimcore/data-hub": "<1.2.4",
-                "pimcore/pimcore": "<10.4.4",
+                "pimcore/pimcore": "<10.5.6",
                 "pocketmine/bedrock-protocol": "<8.0.2",
                 "pocketmine/pocketmine-mp": "<4.7.2|>= 4.0.0-BETA5, < 4.4.2",
                 "pressbooks/pressbooks": "<5.18",
@@ -2095,6 +2096,7 @@
                 "pwweb/laravel-core": "<=0.3.6-beta",
                 "rainlab/debugbar-plugin": "<3.1",
                 "rankmath/seo-by-rank-math": "<=1.0.95",
+                "react/http": ">=0.7,<1.7",
                 "remdex/livehelperchat": "<3.99",
                 "rmccue/requests": ">=1.6,<1.8",
                 "robrichards/xmlseclibs": "<3.0.4",
@@ -2109,7 +2111,7 @@
                 "shopware/core": "<=6.4.9",
                 "shopware/platform": "<=6.4.9",
                 "shopware/production": "<=6.3.5.2",
-                "shopware/shopware": "<=5.7.13",
+                "shopware/shopware": "<=5.7.14",
                 "shopware/storefront": "<=6.4.8.1",
                 "shopxo/shopxo": "<2.2.6",
                 "showdoc/showdoc": "<2.10.4",
@@ -2133,8 +2135,8 @@
                 "simplesamlphp/simplesamlphp-module-infocard": "<1.0.1",
                 "simplito/elliptic-php": "<1.0.6",
                 "slim/slim": "<2.6",
-                "smarty/smarty": "<3.1.45|>=4,<4.1.1",
-                "snipe/snipe-it": "<6.0.10|>= 6.0.0-RC-1, <= 6.0.0-RC-5",
+                "smarty/smarty": "<3.1.47|>=4,<4.2.1",
+                "snipe/snipe-it": "<6.0.11|>= 6.0.0-RC-1, <= 6.0.0-RC-5",
                 "socalnick/scn-social-auth": "<1.15.2",
                 "socialiteproviders/steam": "<1.1",
                 "spipu/html2pdf": "<5.2.4",
@@ -2196,7 +2198,7 @@
                 "thinkcmf/thinkcmf": "<=5.1.7",
                 "tinymce/tinymce": "<5.10",
                 "titon/framework": ">=0,<9.9.99",
-                "topthink/framework": "<=6.0.12",
+                "topthink/framework": "<=6.0.13",
                 "topthink/think": "<=6.0.9",
                 "topthink/thinkphp": "<=3.2.3",
                 "tribalsystems/zenario": "<9.2.55826",
@@ -2204,7 +2206,7 @@
                 "twig/twig": "<1.38|>=2,<2.14.11|>=3,<3.3.8",
                 "typo3/cms": ">=6.2,<6.2.30|>=7,<7.6.32|>=8,<8.7.38|>=9,<9.5.29|>=10,<10.4.32|>=11,<11.5.16",
                 "typo3/cms-backend": ">=7,<=7.6.50|>=8,<=8.7.39|>=9,<=9.5.24|>=10,<=10.4.13|>=11,<=11.1",
-                "typo3/cms-core": ">=6.2,<=6.2.56|>=7,<=7.6.57|>=8,<=8.7.47|>=9,<=9.5.36|>=10,<10.4.32|>=11,<11.5.16",
+                "typo3/cms-core": ">=6.2,<=6.2.56|>=7,<7.6.58|>=8,<8.7.48|>=9,<9.5.37|>=10,<10.4.32|>=11,<11.5.16",
                 "typo3/cms-form": ">=8,<=8.7.39|>=9,<=9.5.24|>=10,<=10.4.13|>=11,<=11.1",
                 "typo3/flow": ">=1,<1.0.4|>=1.1,<1.1.1|>=2,<2.0.1|>=2.3,<2.3.16|>=3,<3.0.12|>=3.1,<3.1.10|>=3.2,<3.2.13|>=3.3,<3.3.13|>=4,<4.0.6",
                 "typo3/html-sanitizer": ">=1,<1.0.7|>=2,<2.0.16",
@@ -2213,7 +2215,7 @@
                 "typo3/swiftmailer": ">=4.1,<4.1.99|>=5.4,<5.4.5",
                 "typo3fluid/fluid": ">=2,<2.0.8|>=2.1,<2.1.7|>=2.2,<2.2.4|>=2.3,<2.3.7|>=2.4,<2.4.4|>=2.5,<2.5.11|>=2.6,<2.6.10",
                 "ua-parser/uap-php": "<3.8",
-                "unisharp/laravel-filemanager": "<=2.3",
+                "unisharp/laravel-filemanager": "<=2.5.1",
                 "userfrosting/userfrosting": ">=0.3.1,<4.6.3",
                 "usmanhalalit/pixie": "<1.0.3|>=2,<2.0.2",
                 "vanilla/safecurl": "<0.9.2",
@@ -2306,7 +2308,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-09-16T14:12:29+00:00"
+            "time": "2022-09-16T22:04:31+00:00"
         },
         {
             "name": "sebastian/cli-parser",
@@ -4217,7 +4219,7 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "beastbytes/iban-php": 20,
+        "beastbytes/iban-data-php": 20,
         "roave/security-advisories": 20
     },
     "prefer-stable": true,
