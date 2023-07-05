@@ -10,23 +10,21 @@ namespace BeastBytes\IBAN\Helper\Tests;
 
 use BeastBytes\IBAN\PHP\IbanData;
 use BeastBytes\IBAN\Helper\Iban;
+use Generator;
 use InvalidArgumentException;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
 class IbanHelperTest extends TestCase
 {
-    /**
-     * @dataProvider ibanProvider
-     */
+    #[DataProvider('ibanProvider')]
     public function test_generate_iban($country, $checkDigits, $data): void
     {
         $iban = $country . $checkDigits . implode($data);
         $this->assertSame($iban, Iban::generateIban($country, $data, new IbanData()));
     }
 
-    /**
-     * @dataProvider badIbanProvider
-     */
+    #[DataProvider('badIbanProvider')]
     public function test_bad_ibans(string $country, string $data, string $message): void
     {
         $this->expectException(InvalidArgumentException::class);
@@ -34,9 +32,7 @@ class IbanHelperTest extends TestCase
         Iban::generateIban($country, $data, new IbanData());
     }
 
-    /**
-     * @dataProvider ibanProvider
-     */
+    #[DataProvider('ibanProvider')]
     public function test_get_fields($country, $checkDigits, $data)
     {
         $ibans = new IbanData();
@@ -46,26 +42,21 @@ class IbanHelperTest extends TestCase
         $this->assertSame(array_combine($ibans->getFields($country), $data), $fields);
     }
 
-    /**
-     * @dataProvider countryProvider
-     */
+    #[DataProvider('countryProvider')]
     public function test_uses_iban(string $country)
     {
         $this->assertTrue(Iban::usesIban($country, new IbanData()));
     }
 
-    /**
-     * @dataProvider badCountryProvider
-     */
+    #[DataProvider('badCountryProvider')]
     public function test_does_not_use_iban(string $country)
     {
         $this->assertFalse(Iban::usesIban($country, new IbanData()));
     }
 
-    public function badIbanProvider()
+    public static function badIbanProvider(): Generator
     {
-
-        return [ // country, data, message
+        foreach ([ // country, data, message
             [
                 'XX', 'BARC20201630093459', 'Country "XX" does not use IBAN'
             ],
@@ -78,12 +69,14 @@ class IbanHelperTest extends TestCase
             [
                 'GB', 'BARCO0201530093459', 'Data not the correct format for GB'
             ],
-        ];
+        ] as $name => $data) {
+            yield $name => $data;
+        }
     }
 
-    public function ibanProvider(): array
+    public static function ibanProvider(): Generator
     {
-        return [
+        foreach ([
             'AL' => ['AL', '47', ['212', '1100', '9', '0000000235698741']],
             'AD' => ['AD', '12', ['0001', '2030', '200359100100']],
             'AT' => ['AT', '61', ['19043', '00234573201']],
@@ -154,27 +147,30 @@ class IbanHelperTest extends TestCase
             'AE' => ['AE', '07', ['033', '1234567890123456']],
             'GB' => ['GB', '29', ['NWBK', '601613', '31926819']],
             'VG' => ['VG', '96', ['VPVG', '0000012345678901']],
-        ];
-
-    }
-
-    public function countryProvider(): array
-    {
-        $provider = [];
-        foreach (array_keys($this->ibanProvider()) as $country) {
-            $provider[] = [$country];
+        ] as $name => $data) {
+            yield $name => $data;
         }
-        return $provider;
     }
 
-    public function badCountryProvider(): array
+    public static function countryProvider(): Generator
     {
-        return [
+        $ibanData = new IbanData();
+
+        foreach ($ibanData->getCountries() as $country) {
+            yield $country => [$country];
+        }
+    }
+
+    public static function badCountryProvider(): Generator
+    {
+        foreach ([
             'non-existent code' => ['XX'],
             'alpha-3 code' => ['GBR'],
             'too short' => ['G'],
             'too long' => ['GBRT'],
-            'number string' => ['12']
-        ];
+            'number string' => ['12'],
+        ] as $name => $data) {
+            yield $name => $data;
+        }
     }
 }
