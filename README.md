@@ -1,5 +1,5 @@
 # IBAN Helper (iban-helper)
-Provides helper methods for [IBAN (International Bank Account Number)](https://www.iban.com).
+Provides helper methods for ISO 13616-1:2007 [International Bank Account Numbers (IBAN)](https://www.iban.com).
 
 ## Installation
 
@@ -14,7 +14,7 @@ php composer.phar require --prefer-dist beastbytes/iban-helper
 or add
 
 ```json
-"beastbytes/iban-helper": "^1.0.0"
+"beastbytes/iban-helper": "^1.0"
 ```
 
 to the require section of your composer.json.

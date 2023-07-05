@@ -1,6 +1,6 @@
 <?php
 /**
- * @copyright Copyright © 2022 BeastBytes - All rights reserved
+ * @copyright Copyright © 2023 BeastBytes - All rights reserved
  * @license BSD 3-Clause
  */
 
@@ -12,11 +12,15 @@ use BeastBytes\IBAN\IbanDataInterface;
 use \InvalidArgumentException;
 
 /**
- * Static helper methods for {@link https://www.iban.com/ International Bank Account Number (IBAN)}
+ * Static helper methods for {@link https://www.iban.com/ ISO 13616-1:2007 International Bank Account Numbers (IBAN)}
  */
 class Iban
 {
-    private static array $ibans;
+    public const DATA_NOT_CORRECT_FORMAT_EXCEPTION_MESSAGE = 'Data not the correct format for {country}';
+    public const INVALID_COUNTRY_EXCEPTION_MESSAGE = 'Invalid country "{country}"';
+    public const INVALID_IBAN_EXCEPTION_MESSAGE = 'Invalid IBAN "{iban}"';
+
+    private const COUNTRY_REGEX = '/^([A-Z]+)\d/';
 
     /**
      * Generates a valid IBAN
@@ -35,14 +39,14 @@ class Iban
     public static function generateIban(
         string $country,
         array|string $data,
-        IbanDataInterface $ibans
+        IbanDataInterface $ibanData
     ): string
     {
         $country = strtoupper($country);
 
-        if (!self::usesIban($country, $ibans)) {
+        if (!self::usesIban($country, $ibanData)) {
             throw new InvalidArgumentException(strtr(
-                'Country "{country}" does not use IBAN',
+                self::INVALID_COUNTRY_EXCEPTION_MESSAGE,
                 ['{country}' => $country]
             ));
         }
@@ -54,9 +58,9 @@ class Iban
         $data = str_replace(' ', '', strtoupper($data));
 
         $iban = $country . '00' . $data;
-        if (preg_match($ibans->getPattern($country), $iban, $matches) === 0) {
+        if (preg_match($ibanData->getPattern($country), $iban, $matches) === 0) {
             throw new InvalidArgumentException(strtr(
-                'Data not the correct format for {country}',
+                self::DATA_NOT_CORRECT_FORMAT_EXCEPTION_MESSAGE,
                 ['{country}' => $country]
             ));
         }
@@ -70,21 +74,31 @@ class Iban
      * @param string $iban The IBAN to get the fields of
      * @return array The IBAN fields
      */
-    public static function getFields(string $iban, IbanDataInterface $ibans): array
+    public static function getFields(string $iban, IbanDataInterface $ibanData): array
     {
         $iban = str_replace(' ', '', $iban);
-        $country = substr($iban, 0, 2);
 
-        if (!self::usesIban($country, $ibans)) {
+        $matches = [];
+        $result = preg_match(self::COUNTRY_REGEX, $iban, $matches);
+
+        if ($result !== 1) {
             throw new InvalidArgumentException(strtr(
-                'Country "{country}" does not use IBAN',
+               self::INVALID_IBAN_EXCEPTION_MESSAGE,
+               ['{iban}' => $iban]
+            ));
+        }
+
+        $country = $matches[1];
+
+        if (!self::usesIban($country, $ibanData)) {
+            throw new InvalidArgumentException(strtr(
+                self::INVALID_COUNTRY_EXCEPTION_MESSAGE,
                 ['{country}' => $country]
             ));
         }
 
-        $matches = [];
-        preg_match($ibans->getPattern($country), $iban, $matches);
-        return array_combine($ibans->getFields($country), array_slice($matches, 1));
+        preg_match($ibanData->getPattern($country), $iban, $matches);
+        return array_combine($ibanData->getFields($country), array_slice($matches, 1));
     }
 
     public static function checkDigits(string $iban): string
@@ -119,8 +133,8 @@ class Iban
         return $mod97;
     }
 
-    public static function usesIban(string $country, IbanDataInterface $ibans): bool
+    public static function usesIban(string $country, IbanDataInterface $ibanData): bool
     {
-        return $ibans->hasCountry($country);
+        return $ibanData->hasCountry($country);
     }
 }

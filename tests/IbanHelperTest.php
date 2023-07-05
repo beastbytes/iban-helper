@@ -25,8 +25,14 @@ class IbanHelperTest extends TestCase
     }
 
     #[DataProvider('badIbanProvider')]
-    public function test_bad_ibans(string $country, string $data, string $message): void
+    public function test_bad_ibans(string $country, string $data): void
     {
+        if ((new IbanData())->hasCountry($country)) {
+            $message = strtr(Iban::DATA_NOT_CORRECT_FORMAT_EXCEPTION_MESSAGE, ['{country}' => $country]);
+        } else {
+            $message = strtr(Iban::INVALID_COUNTRY_EXCEPTION_MESSAGE, ['{country}' => $country]);
+        }
+
         $this->expectException(InvalidArgumentException::class);
         $this->expectExceptionMessage($message);
         Iban::generateIban($country, $data, new IbanData());
@@ -49,25 +55,90 @@ class IbanHelperTest extends TestCase
     }
 
     #[DataProvider('badCountryProvider')]
-    public function test_does_not_use_iban(string $country)
+    public function test_does_not_use_iban(string $country, string $message)
     {
         $this->assertFalse(Iban::usesIban($country, new IbanData()));
+
+        $this->expectException(InvalidArgumentException::class);
+        $this->expectExceptionMessage($message);
+        Iban::getFields($country. '00BARC20201630093459', new IbanData());
     }
 
     public static function badIbanProvider(): Generator
     {
         foreach ([ // country, data, message
-            [
-                'XX', 'BARC20201630093459', 'Country "XX" does not use IBAN'
+            'Bad sort code' => [
+                'GB', 'BARC2020163003459', strtr(Iban::DATA_NOT_CORRECT_FORMAT_EXCEPTION_MESSAGE, [
+                    '{country}' => 'GB'
+                ])
             ],
-            [
-                'GB', 'BARC2020163003459', 'Data not the correct format for GB'
+            'Bad account number' => [
+                'GB', 'BARC20201530093A59', strtr(Iban::DATA_NOT_CORRECT_FORMAT_EXCEPTION_MESSAGE, [
+                    '{country}' => 'GB'
+                ])
             ],
-            [
-                'GB', 'BARC20201530093A59', 'Data not the correct format for GB'
+            'Bad bank' => [
+                'GB', 'BARCO0201530093459', strtr(Iban::DATA_NOT_CORRECT_FORMAT_EXCEPTION_MESSAGE, [
+                    '{country}' => 'GB'
+                ])
             ],
-            [
-                'GB', 'BARCO0201530093459', 'Data not the correct format for GB'
+            'Does not use IBAN' => [
+                'US', 'BARC20201630093459', strtr(IBAN::INVALID_COUNTRY_EXCEPTION_MESSAGE, [
+                    '{country}' => 'US'
+                ])
+            ],
+            'alpha-3 code' => [
+                'GBR', 'BARC20201630093459', strtr(Iban::INVALID_COUNTRY_EXCEPTION_MESSAGE, [
+                    '{country}' => 'GBR'
+                ])
+            ],
+            'too short' => [
+                'G', 'BARC20201630093459', strtr(Iban::INVALID_COUNTRY_EXCEPTION_MESSAGE, [
+                    '{country}' => 'G'
+                ])
+            ],
+            'too long' => [
+                'GBRT', 'BARC20201630093459', strtr(Iban::INVALID_COUNTRY_EXCEPTION_MESSAGE, [
+                    '{country}' => 'GBRT'
+                ])
+            ],
+            'number string' => [
+                '12', 'BARC20201630093459', strtr(Iban::INVALID_IBAN_EXCEPTION_MESSAGE, [
+                    '{iban}' => '1200BARC20201630093459'
+                ])
+            ],
+        ] as $name => $data) {
+            yield $name => $data;
+        }
+    }
+
+    public static function badCountryProvider(): Generator
+    {
+        foreach ([ // country, data, message
+            'Does not use IBAN' => [
+                'US', strtr(IBAN::INVALID_COUNTRY_EXCEPTION_MESSAGE, [
+                    '{country}' => 'US'
+                ])
+            ],
+            'alpha-3 code' => [
+                'GBR', strtr(Iban::INVALID_COUNTRY_EXCEPTION_MESSAGE, [
+                    '{country}' => 'GBR'
+                ])
+            ],
+            'too short' => [
+                'G', strtr(Iban::INVALID_COUNTRY_EXCEPTION_MESSAGE, [
+                    '{country}' => 'G'
+                ])
+            ],
+            'too long' => [
+                'GBRT', strtr(Iban::INVALID_COUNTRY_EXCEPTION_MESSAGE, [
+                    '{country}' => 'GBRT'
+                ])
+            ],
+            'number string' => [
+                '12', strtr(Iban::INVALID_IBAN_EXCEPTION_MESSAGE, [
+                    '{iban}' => '1200BARC20201630093459'
+                ])
             ],
         ] as $name => $data) {
             yield $name => $data;
@@ -158,19 +229,6 @@ class IbanHelperTest extends TestCase
 
         foreach ($ibanData->getCountries() as $country) {
             yield $country => [$country];
-        }
-    }
-
-    public static function badCountryProvider(): Generator
-    {
-        foreach ([
-            'non-existent code' => ['XX'],
-            'alpha-3 code' => ['GBR'],
-            'too short' => ['G'],
-            'too long' => ['GBRT'],
-            'number string' => ['12'],
-        ] as $name => $data) {
-            yield $name => $data;
         }
     }
 }
