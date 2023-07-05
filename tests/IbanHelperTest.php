@@ -6,7 +6,7 @@
 
 declare(strict_types=1);
 
-namespace Tests;
+namespace BeastBytes\IBAN\Helper\Tests;
 
 use BeastBytes\IBAN\PHP\IbanData;
 use BeastBytes\IBAN\Helper\Iban;
@@ -155,7 +155,7 @@ class IbanHelperTest extends TestCase
             'GB' => ['GB', '29', ['NWBK', '601613', '31926819']],
             'VG' => ['VG', '96', ['VPVG', '0000012345678901']],
         ];
-        
+
     }
 
     public function countryProvider(): array

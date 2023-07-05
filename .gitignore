@@ -27,10 +27,14 @@ composer.phar
 
 # phpunit itself is not needed
 phpunit.phar
-.phpunit.result.cache
+/.phpunit.cache
 
 # local phpunit config
 /phpunit.xml
+/phpunit.xml.dist
+
+# logs
+/logs
 
 # NPM packages
 /node_modules
@@ -40,7 +44,7 @@ phpunit.phar
 c3.php
 
 # Composer
-# composer.lock
+composer.lock
 
 # phpDocumentor cache
 /docs/cache

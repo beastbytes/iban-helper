@@ -22,10 +22,12 @@
         "php": "^8.0"
     },
     "require-dev": {
+        "consolidation/robo": "^4.0",
         "beastbytes/iban-data-php": "dev-master",
-        "phpunit/phpunit": "^9.5",
+        "phpunit/phpunit": "^10.0",
+        "roave/infection-static-analysis-plugin": "^1.0",
         "roave/security-advisories": "dev-latest",
-        "vimeo/psalm": "^4.3"
+        "vimeo/psalm": "^5.0"
     },
     "autoload": {
         "psr-4": {
@@ -34,7 +36,14 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Tests\\": "tests"
+            "BeastBytes\\IBAN\\Helper\\Tests\\": "tests"
         }
+    },
+    "scripts": {
+        "infection": "roave-infection-static-analysis-plugin --log-verbosity=all --debug",
+        "psalm": "psalm",
+        "robo": "robo",
+        "test": "phpunit --testdox"
     }
 }
+
