@@ -23,7 +23,7 @@
     },
     "require-dev": {
         "consolidation/robo": "^4.0",
-        "beastbytes/iban-data-php": "dev-master",
+        "beastbytes/iban-data-php": "1.0",
         "phpunit/phpunit": "^10.0",
         "roave/infection-static-analysis-plugin": "^1.0",
         "roave/security-advisories": "dev-latest",
